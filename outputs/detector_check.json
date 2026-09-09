@@ -1,0 +1,47 @@
+{
+  "utterances": 4000,
+  "gold_events": 3008,
+  "detected_events": 3188,
+  "matched": 2792,
+  "detection_recall": 0.9281914893617021,
+  "detection_precision": 0.875784190715182,
+  "type_accuracy_given_match": 0.8785816618911175,
+  "type_accuracy_overall": 0.8154920212765957,
+  "rows_with_dropped_words": 0,
+  "gold_by_type": {
+    "filler": 1641,
+    "repair": 580,
+    "repetition": 704,
+    "false_start": 83
+  },
+  "detected_by_type": {
+    "false_start": 102,
+    "filler": 1936,
+    "repair": 614,
+    "repetition": 536
+  },
+  "confusion": {
+    "false_start->false_start": 1,
+    "false_start->filler": 2,
+    "false_start->none": 4,
+    "false_start->repair": 76,
+    "filler->false_start": 12,
+    "filler->filler": 1595,
+    "filler->none": 6,
+    "filler->repair": 28,
+    "none->false_start": 4,
+    "none->filler": 309,
+    "none->repair": 49,
+    "none->repetition": 34,
+    "repair->false_start": 64,
+    "repair->filler": 8,
+    "repair->none": 143,
+    "repair->repair": 360,
+    "repair->repetition": 5,
+    "repetition->false_start": 21,
+    "repetition->filler": 22,
+    "repetition->none": 63,
+    "repetition->repair": 101,
+    "repetition->repetition": 497
+  }
+}

@@ -1,0 +1,248 @@
+{
+  "sentences": 400,
+  "rate_control": {
+    "Injector/d0": {
+      "rates": {
+        "filler": 0.0,
+        "repetition": 0.0,
+        "repair": 0.0,
+        "false_start": 0.0
+      },
+      "total_rate": 0.0,
+      "target": {
+        "filler": 0.0,
+        "repetition": 0.0,
+        "repair": 0.0,
+        "false_start": 0.0,
+        "total": 0.0
+      },
+      "mix": {
+        "filler": 0.0,
+        "repetition": 0.0,
+        "repair": 0.0,
+        "false_start": 0.0
+      },
+      "events": 0
+    },
+    "Injector/d1": {
+      "rates": {
+        "filler": 3.980032379924447,
+        "repetition": 2.239611440906638,
+        "repair": 0.49919050188882896,
+        "false_start": 0.13491635186184567
+      },
+      "total_rate": 6.85375067458176,
+      "target": {
+        "filler": 3.8847555799670443,
+        "repetition": 1.4485999456289564,
+        "repair": 1.1306957829152866,
+        "false_start": 0.20916207564232728,
+        "total": 6.673213384153614
+      },
+      "mix": {
+        "filler": 0.5807086614173228,
+        "repetition": 0.32677165354330706,
+        "repair": 0.07283464566929133,
+        "false_start": 0.01968503937007874
+      },
+      "events": 508
+    },
+    "Injector/d2": {
+      "rates": {
+        "filler": 7.676740420939018,
+        "repetition": 4.776038855909336,
+        "repair": 1.2277388019427955,
+        "false_start": 0.593631948192121
+      },
+      "total_rate": 14.274150026983271,
+      "target": {
+        "filler": 7.4667102360918225,
+        "repetition": 3.4570853539892017,
+        "repair": 2.7047701093939147,
+        "false_start": 0.5755620084514782,
+        "total": 14.204127707926416
+      },
+      "mix": {
+        "filler": 0.5378071833648393,
+        "repetition": 0.33459357277882795,
+        "repair": 0.08601134215500945,
+        "false_start": 0.04158790170132325
+      },
+      "events": 1058
+    },
+    "Injector/d3": {
+      "rates": {
+        "filler": 12.7630868861306,
+        "repetition": 10.631408526713438,
+        "repair": 3.3054506206152188,
+        "false_start": 1.3761467889908257
+      },
+      "total_rate": 28.076092822450082,
+      "target": {
+        "filler": 12.106135986733001,
+        "repetition": 7.4052812858783,
+        "repair": 7.118254879448909,
+        "false_start": 1.4255644852659777,
+        "total": 28.05523663732619
+      },
+      "mix": {
+        "filler": 0.45458913983661703,
+        "repetition": 0.3786641037962518,
+        "repair": 0.11773185968284479,
+        "false_start": 0.0490148966842864
+      },
+      "events": 2081
+    }
+  },
+  "rate_error": {
+    "Injector": {
+      "mean_abs_error": 0.09047193153629814,
+      "mean_rel_error": 0.010909046590914342
+    }
+  },
+  "fidelity": {
+    "Injector/d0": {
+      "dropped_words": 0,
+      "clean_words": 7412,
+      "kept": 1.0,
+      "sentences_with_a_dropped_word": 0
+    },
+    "Injector/d1": {
+      "dropped_words": 0,
+      "clean_words": 7412,
+      "kept": 1.0,
+      "sentences_with_a_dropped_word": 0
+    },
+    "Injector/d2": {
+      "dropped_words": 0,
+      "clean_words": 7412,
+      "kept": 1.0,
+      "sentences_with_a_dropped_word": 0
+    },
+    "Injector/d3": {
+      "dropped_words": 1,
+      "clean_words": 7412,
+      "kept": 0.9998650836481382,
+      "sentences_with_a_dropped_word": 1
+    }
+  },
+  "switchboard": {
+    "d0": {
+      "utterances": 768,
+      "events": 0,
+      "mix": {
+        "filler": 0.0,
+        "repetition": 0.0,
+        "repair": 0.0,
+        "false_start": 0.0
+      },
+      "gold_mix": {
+        "filler": 0.0,
+        "repetition": 0.0,
+        "repair": 0.0,
+        "false_start": 0.0
+      },
+      "rates": {
+        "filler": 0.0,
+        "repetition": 0.0,
+        "repair": 0.0,
+        "false_start": 0.0
+      }
+    },
+    "d1": {
+      "utterances": 622,
+      "events": 785,
+      "mix": {
+        "filler": 0.6140127388535032,
+        "repetition": 0.1770700636942675,
+        "repair": 0.18980891719745224,
+        "false_start": 0.01910828025477707
+      },
+      "gold_mix": {
+        "filler": 0.5832167832167832,
+        "repetition": 0.22237762237762237,
+        "repair": 0.17202797202797201,
+        "false_start": 0.022377622377622378
+      },
+      "rates": {
+        "filler": 4.482886904761905,
+        "repetition": 1.2927827380952381,
+        "repair": 1.3857886904761905,
+        "false_start": 0.13950892857142858
+      }
+    },
+    "d2": {
+      "utterances": 495,
+      "events": 1083,
+      "mix": {
+        "filler": 0.6131117266851339,
+        "repetition": 0.17082179132040629,
+        "repair": 0.1837488457987073,
+        "false_start": 0.032317636195752536
+      },
+      "gold_mix": {
+        "filler": 0.5431976166832175,
+        "repetition": 0.24329692154915591,
+        "repair": 0.17974180734856007,
+        "false_start": 0.033763654419066536
+      },
+      "rates": {
+        "filler": 9.293212036389082,
+        "repetition": 2.589223233030091,
+        "repair": 2.7851644506648006,
+        "false_start": 0.489853044086774
+      }
+    },
+    "d3": {
+      "utterances": 115,
+      "events": 425,
+      "mix": {
+        "filler": 0.5670588235294117,
+        "repetition": 0.16705882352941176,
+        "repair": 0.2376470588235294,
+        "false_start": 0.02823529411764706
+      },
+      "gold_mix": {
+        "filler": 0.4288840262582057,
+        "repetition": 0.24288840262582057,
+        "repair": 0.2910284463894967,
+        "false_start": 0.037199124726477024
+      },
+      "rates": {
+        "filler": 14.987562189054726,
+        "repetition": 4.41542288557214,
+        "repair": 6.281094527363184,
+        "false_start": 0.746268656716418
+      }
+    }
+  },
+  "type_mix_kl": {
+    "Injector/d1": 0.14207165050371415,
+    "Injector/d2": 0.1429624904277401,
+    "Injector/d3": 0.2199238461887783,
+    "Switchboard gold/d2": 0.02521078647253014
+  },
+  "placement": {
+    "Hem": {
+      "n": 0
+    },
+    "Injector": {
+      "n": 569,
+      "at_clause_onset": 0.1687170474516696,
+      "before_content_word": 0.9086115992970123,
+      "mean_next_log_freq": -4.493619291079266
+    },
+    "Switchboard": {
+      "n": 664,
+      "at_clause_onset": 0.7620481927710844,
+      "before_content_word": 0.3990963855421687,
+      "mean_next_log_freq": -2.6133922604390283
+    },
+    "random word": {
+      "n": 7412,
+      "at_clause_onset": 0.11063140852671344,
+      "before_content_word": 0.5423637344846195,
+      "mean_next_log_freq": -3.587493724951996
+    }
+  }
+}

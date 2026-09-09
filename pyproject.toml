@@ -1,0 +1,39 @@
+[project]
+name = "hem"
+version = "0.1.0"
+description = "Disfluency insertion with a naturalness dial: clean scripted text in, realistically disfluent text out"
+requires-python = ">=3.11"  # numpy 2.3 floor
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Oscar Dalton" }]
+dependencies = [
+    "torch==2.9.*",
+    "transformers==4.57.*",
+    "datasets==4.4.*",
+    "accelerate==1.12.*",
+    "matplotlib==3.10.*",
+    "numpy==2.3.*",
+    "sentencepiece==0.2.*",
+    "jiwer==4.0.*",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==8.4.*"]
+
+[project.urls]
+Homepage = "https://github.com/daltonoscar0/hem"
+Source = "https://github.com/daltonoscar0/hem"
+
+[project.scripts]
+hem = "hem.__main__:main"
+
+[build-system]
+requires = ["setuptools>=77"]  # PEP 639 licence metadata
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["hem"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

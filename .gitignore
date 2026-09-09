@@ -1,0 +1,29 @@
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.DS_Store
+
+# corpus and generated data dumps
+swda/
+swda.zip
+data/*.jsonl
+
+# training artifacts
+outputs/checkpoints/
+outputs/model*
+outputs/runs/
+*.pt
+*.safetensors
+
+# hf caches
+.cache/
+
+# logs
+outputs/*.log
+
+# packaging
+*.egg-info/
+
+# local tooling
+.claude/

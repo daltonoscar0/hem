@@ -1,0 +1,246 @@
+{
+  "source": "Switchboard Dialog Act corpus, parsed by hem/swda.py",
+  "utterances": 35208,
+  "utterances_before_length_filter": 81107,
+  "min_clean_words": 10,
+  "clean_words": 530999,
+  "light_percentile": 50.0,
+  "heavy_percentile": 90.0,
+  "light_cut_per_100w": 10.0,
+  "heavy_cut_per_100w": 21.42857142857143,
+  "corpus": {
+    "rates": {
+      "filler": 3.9269377155135885,
+      "repetition": 1.805653117990806,
+      "repair": 1.4900216384588294,
+      "false_start": 0.30113051060359813
+    },
+    "total_rate": 7.523742982566822,
+    "mix": {
+      "filler": 0.5219393757352757,
+      "repetition": 0.2399939926409852,
+      "repair": 0.1980426021876799,
+      "false_start": 0.04002402943605917
+    }
+  },
+  "levels": {
+    "0": {
+      "utterances": 13349,
+      "share_of_corpus": 0.37914678482163144,
+      "clean_words": 184749,
+      "events": 0,
+      "rates": {
+        "filler": 0.0,
+        "repetition": 0.0,
+        "repair": 0.0,
+        "false_start": 0.0
+      },
+      "total_rate": 0.0,
+      "mix": {
+        "filler": 0.0,
+        "repetition": 0.0,
+        "repair": 0.0,
+        "false_start": 0.0
+      },
+      "inserted_per_100w": 0.0,
+      "mean_words_per_event": Infinity
+    },
+    "1": {
+      "utterances": 10651,
+      "share_of_corpus": 0.30251647352874345,
+      "clean_words": 180243,
+      "events": 12028,
+      "rates": {
+        "filler": 3.8847555799670443,
+        "repetition": 1.4485999456289564,
+        "repair": 1.1306957829152866,
+        "false_start": 0.20916207564232728
+      },
+      "total_rate": 6.673213384153614,
+      "mix": {
+        "filler": 0.5821416694379781,
+        "repetition": 0.21707682075157964,
+        "repair": 0.16943797805121383,
+        "false_start": 0.031343531759228466
+      },
+      "inserted_per_100w": 10.272243582275038,
+      "mean_words_per_event": 14.985284336548055
+    },
+    "2": {
+      "utterances": 8992,
+      "share_of_corpus": 0.2553965007952738,
+      "clean_words": 134651,
+      "events": 19126,
+      "rates": {
+        "filler": 7.4667102360918225,
+        "repetition": 3.4570853539892017,
+        "repair": 2.7047701093939147,
+        "false_start": 0.5755620084514782
+      },
+      "total_rate": 14.204127707926416,
+      "mix": {
+        "filler": 0.5256718602948866,
+        "repetition": 0.24338596674683677,
+        "repair": 0.1904214158736798,
+        "false_start": 0.04052075708459688
+      },
+      "inserted_per_100w": 22.46994080994571,
+      "mean_words_per_event": 7.04020704799749
+    },
+    "3": {
+      "utterances": 2216,
+      "share_of_corpus": 0.06294024085435128,
+      "clean_words": 31356,
+      "events": 8797,
+      "rates": {
+        "filler": 12.106135986733001,
+        "repetition": 7.4052812858783,
+        "repair": 7.118254879448909,
+        "false_start": 1.4255644852659777
+      },
+      "total_rate": 28.05523663732619,
+      "mix": {
+        "filler": 0.43151074229851083,
+        "repetition": 0.2639536205524611,
+        "repair": 0.2537228600659316,
+        "false_start": 0.05081277708309651
+      },
+      "inserted_per_100w": 48.09924735297869,
+      "mean_words_per_event": 3.5643969535068774
+    }
+  },
+  "shape": {
+    "repairs": 7912,
+    "interregnum_rate": 0.20412032355915066,
+    "span_repair_rate": 0.5600353892821032,
+    "mean_repair_span": 2.091127401415571,
+    "repetition_bigram_rate": 0.1610346266166041,
+    "filler_phrases": [
+      {
+        "phrase": "uh",
+        "count": 8321,
+        "share": 0.3990504507960867
+      },
+      {
+        "phrase": "you know",
+        "count": 4780,
+        "share": 0.22923460579320928
+      },
+      {
+        "phrase": "well",
+        "count": 1814,
+        "share": 0.08699405332821791
+      },
+      {
+        "phrase": "um",
+        "count": 1698,
+        "share": 0.08143103779014003
+      },
+      {
+        "phrase": "i mean",
+        "count": 788,
+        "share": 0.03779014003452906
+      },
+      {
+        "phrase": "like",
+        "count": 732,
+        "share": 0.035104546326491466
+      },
+      {
+        "phrase": "uh you know",
+        "count": 367,
+        "share": 0.017600230193746402
+      },
+      {
+        "phrase": "oh",
+        "count": 355,
+        "share": 0.017024745827738347
+      },
+      {
+        "phrase": "uh uh",
+        "count": 317,
+        "share": 0.015202378668712834
+      },
+      {
+        "phrase": "now",
+        "count": 119,
+        "share": 0.0057068866295798965
+      },
+      {
+        "phrase": "actually",
+        "count": 78,
+        "share": 0.003740648379052369
+      },
+      {
+        "phrase": "well you know",
+        "count": 78,
+        "share": 0.003740648379052369
+      },
+      {
+        "phrase": "so",
+        "count": 77,
+        "share": 0.0036926913485516976
+      },
+      {
+        "phrase": "see",
+        "count": 76,
+        "share": 0.0036447343180510262
+      },
+      {
+        "phrase": "um you know",
+        "count": 64,
+        "share": 0.0030692499520429697
+      },
+      {
+        "phrase": "uh well",
+        "count": 59,
+        "share": 0.0028294647995396123
+      },
+      {
+        "phrase": "well uh",
+        "count": 51,
+        "share": 0.0024458085555342413
+      },
+      {
+        "phrase": "you know uh",
+        "count": 48,
+        "share": 0.002301937464032227
+      },
+      {
+        "phrase": "you know like",
+        "count": 45,
+        "share": 0.002158066372530213
+      },
+      {
+        "phrase": "i mean you know",
+        "count": 39,
+        "share": 0.0018703241895261845
+      },
+      {
+        "phrase": "oh well",
+        "count": 39,
+        "share": 0.0018703241895261845
+      },
+      {
+        "phrase": "um uh",
+        "count": 35,
+        "share": 0.001678496067523499
+      },
+      {
+        "phrase": "uh oh",
+        "count": 34,
+        "share": 0.0016305390370228276
+      },
+      {
+        "phrase": "huh",
+        "count": 30,
+        "share": 0.0014387109150201418
+      },
+      {
+        "phrase": "yeah",
+        "count": 29,
+        "share": 0.0013907538845194705
+      }
+    ]
+  }
+}
