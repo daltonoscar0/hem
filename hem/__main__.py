@@ -53,6 +53,14 @@ def build_parser() -> argparse.ArgumentParser:
         help="use the rule-based injector instead of the model",
     )
     ap.add_argument(
+        "--greedy", action="store_true",
+        help="decode greedily, which collapses the dial; see the README",
+    )
+    ap.add_argument(
+        "--temperature", type=float, default=1.0,
+        help="sampling temperature (default 1.0, the model's own distribution)",
+    )
+    ap.add_argument(
         "--trace", action="store_true",
         help="also list the detected insertions with their type and position",
     )
@@ -93,6 +101,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         device=args.device,
         batch=args.batch,
         seed=args.seed,
+        greedy=args.greedy,
+        temperature=args.temperature,
     )
 
     wanted = list(L.LEVELS) if args.all_levels else [args.level]

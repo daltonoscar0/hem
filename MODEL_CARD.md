@@ -3,7 +3,7 @@ license: mit
 language:
   - en
 base_model: google/flan-t5-small
-pipeline_tag: text2text-generation
+library_name: transformers
 tags:
   - disfluency
   - speech

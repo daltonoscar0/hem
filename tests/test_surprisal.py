@@ -121,15 +121,29 @@ def scorer_for(row, disfluent_values, clean_values):
 
 
 def test_a_window_is_centred_on_the_boundary():
+    """With no editing phrase, the boundary is the first token of the *repair*,
+    at index 7, not the abandoned word at index 6. That is the position a
+    listener learns something went wrong, and getting it wrong would shift every
+    curve in the figure by one."""
     row = make_row()
-    n_dis = len(row["disfluent_tokens"])
-    dis = [0.0] * n_dis
-    dis[6] = 9.0  # the boundary token
+    dis = [0.0] * len(row["disfluent_tokens"])
+    dis[7] = 9.0
     scorer = scorer_for(row, dis, [0.0] * len(row["clean_tokens"]))
     data, control = collect([row], scorer, batch=8, verbose=False)
     assert data.shape == (1, 2 * WINDOW + 1)
     assert data[0][WINDOW] == 9.0
+    assert data[0][WINDOW - 1] == 0.0  # the reparandum sits one position earlier
     assert control.shape == data.shape
+
+
+def test_an_editing_phrase_moves_the_boundary_to_its_first_token():
+    row = make_row()
+    row["annotations"][0]["interregnum"] = {"start": 6, "end": 7}
+    dis = [0.0] * len(row["disfluent_tokens"])
+    dis[6] = 9.0
+    scorer = scorer_for(row, dis, [0.0] * len(row["clean_tokens"]))
+    data, _ = collect([row], scorer, batch=8, verbose=False)
+    assert data[0][WINDOW] == 9.0
 
 
 def test_the_control_is_read_at_the_matching_clean_position():

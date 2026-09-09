@@ -1,0 +1,44 @@
+{
+  "Hem": {
+    "n": 366,
+    "peak_position": -1,
+    "peak_effect_bits": 7.660292124090706,
+    "peak_effect_ci95": [
+      6.416810364431391,
+      8.909804036959885
+    ],
+    "effect_at_boundary_bits": -2.177493272534994,
+    "effect_at_boundary_ci95": [
+      -3.2095807900986904,
+      -1.1952196502805523
+    ]
+  },
+  "Injector": {
+    "n": 138,
+    "peak_position": 0,
+    "peak_effect_bits": 3.1682647984960806,
+    "peak_effect_ci95": [
+      2.2492192351596727,
+      4.057028091374947
+    ],
+    "effect_at_boundary_bits": 3.1682647984960806,
+    "effect_at_boundary_ci95": [
+      2.2492192351596727,
+      4.057028091374947
+    ]
+  },
+  "Switchboard": {
+    "n": 562,
+    "peak_position": 0,
+    "peak_effect_bits": 4.73236508261134,
+    "peak_effect_ci95": [
+      4.3421698056177975,
+      5.119432419166632
+    ],
+    "effect_at_boundary_bits": 4.73236508261134,
+    "effect_at_boundary_ci95": [
+      4.3421698056177975,
+      5.119432419166632
+    ]
+  }
+}

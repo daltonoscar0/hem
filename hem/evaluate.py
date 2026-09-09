@@ -53,8 +53,18 @@ COLOURS = {
     "Hem": "#0072B2",
     "Injector": "#D55E00",
     "Switchboard": "#009E73",
+    "Hem greedy": "#CC79A7",
     "target": "#4D4D4D",
 }
+
+#: The order systems appear in every table and figure.
+ORDER = ("Hem", "Hem greedy", "Injector", "Switchboard")
+
+
+def systems_in(runs) -> List[str]:
+    """System names present in a run table, in the reporting order."""
+    present = {k[0] for k in runs}
+    return [s for s in ORDER if s in present]
 
 
 def normalise(word: str) -> str:
@@ -196,7 +206,10 @@ def rate_table(runs: Dict[Tuple[str, int], dict]) -> str:
         "All types | Target | Ratio |"
     )
     lines = [header, "|" + "|".join("---" for _ in range(9)) + "|"]
-    for (system, level), run in sorted(runs.items(), key=lambda kv: (kv[0][0], kv[0][1])):
+    ordered = sorted(runs, key=lambda k: (ORDER.index(k[0]), k[1]))
+    for key in ordered:
+        system, level = key
+        run = runs[key]
         target = L.targets(level)
         r = run["rates"]
         ratio = (
@@ -244,9 +257,7 @@ def rate_figure(runs: Dict[Tuple[str, int], dict], out_dir: Path) -> Path:
     ax.plot(xs, [L.targets(k)["total"] for k in xs], color=COLOURS["target"],
             linestyle="--", dashes=(4, 2), linewidth=1.2, marker="s", markersize=3,
             label="Switchboard target")
-    for system in ("Hem", "Injector"):
-        if (system, 0) not in runs:
-            continue
+    for system in systems_in(runs):
         ax.plot(xs, [runs[(system, k)]["total_rate"] for k in xs],
                 color=COLOURS[system], linewidth=1.4, marker="o", markersize=3.2,
                 label=system)
@@ -259,9 +270,7 @@ def rate_figure(runs: Dict[Tuple[str, int], dict], out_dir: Path) -> Path:
         style = "-" if key == "filler" else ":"
         ax.plot(xs, [L.targets(k)[key] for k in xs], color=COLOURS["target"],
                 linestyle=style, linewidth=1.0, alpha=0.7)
-        for system in ("Hem", "Injector"):
-            if (system, 0) not in runs:
-                continue
+        for system in systems_in(runs):
             ax.plot(xs, [runs[(system, k)]["rates"][key] for k in xs],
                     color=COLOURS[system], linewidth=1.3, linestyle=style,
                     marker="o" if key == "filler" else "^", markersize=3.2,
@@ -319,9 +328,7 @@ def mix_table(
     lines = [header, "|" + "|".join("---" for _ in range(7)) + "|"]
     for level in (1, 2, 3):
         ref = reference[level]["mix"]
-        for system in ("Hem", "Injector"):
-            if (system, level) not in runs:
-                continue
+        for system in systems_in(runs):
             mix = runs[(system, level)]["mix"]
             lines.append(
                 f"| {system} | `<d{level}>` | "
@@ -436,7 +443,7 @@ def placement_table(rows: Dict[str, dict], baselines: Dict[str, dict]) -> str:
         "Log freq of the next word | Same, mid-clause only |"
     )
     lines = [header, "|" + "|".join("---" for _ in range(6)) + "|"]
-    for name in ("Hem", "Injector", "Switchboard"):
+    for name in ORDER:
         s = rows.get(name)
         if not s or not s.get("n"):
             continue
@@ -472,7 +479,7 @@ def placement_table(rows: Dict[str, dict], baselines: Dict[str, dict]) -> str:
 
 
 def placement_figure(
-    rows: Dict[str, dict], baseline: dict, out_dir: Path, bins: int = 10
+    rows: Dict[str, dict], baselines: Dict[str, dict], out_dir: Path, bins: int = 10
 ) -> Path:
     import matplotlib
 
@@ -486,7 +493,7 @@ def placement_figure(
     ax = axes[0]
     edges = np.linspace(0, 1, bins + 1)
     centres = (edges[:-1] + edges[1:]) / 2
-    for name in ("Switchboard", "Hem", "Injector"):
+    for name in ORDER:
         s = rows.get(name)
         if not s or not s.get("n"):
             continue
@@ -500,19 +507,26 @@ def placement_figure(
     ax.set_title("Where in the sentence", pad=4)
     ax.legend(frameon=False, loc="best", handlelength=1.6, fontsize=6)
 
+    # Clause onsets, each system against its own text's random baseline. The
+    # baseline has to be per corpus: Switchboard's transcribers comma far more
+    # heavily than the scripted sentences do, so a raw share compared across the
+    # two would be measuring punctuation rather than hesitation.
     ax = axes[1]
-    names = [n for n in ("Switchboard", "Hem", "Injector") if rows.get(n, {}).get("n")]
-    values = [rows[n]["mean_next_log_freq"] for n in names]
-    ax.bar(range(len(names)), values, color=[COLOURS[n] for n in names], width=0.55)
-    ax.axhline(baseline["mean_next_log_freq"], color="#999999", linewidth=0.9,
-               linestyle="--", dashes=(4, 2))
-    ax.text(len(names) - 0.5, baseline["mean_next_log_freq"], " a random word",
-            va="bottom", ha="right", fontsize=6, color="#666666")
+    names = [n for n in ORDER if rows.get(n, {}).get("n")]
+    lift = [
+        rows[n]["at_clause_onset"] / baselines[n]["at_clause_onset"]
+        if baselines[n]["at_clause_onset"] else 0.0
+        for n in names
+    ]
+    ax.bar(range(len(names)), lift, color=[COLOURS[n] for n in names], width=0.55)
+    ax.axhline(1, color="#999999", linewidth=0.9, linestyle="--", dashes=(4, 2))
+    for i, value in enumerate(lift):
+        ax.text(i, value, f"{value:.1f}x", ha="center", va="bottom", fontsize=7)
     ax.set_xticks(range(len(names)))
-    ax.set_xticklabels(names)
-    ax.set_ylabel("Mean log frequency of the next word")
-    ax.set_title("What comes after, lower is harder", pad=4)
-    ax.invert_yaxis()
+    ax.set_xticklabels([n.replace(" ", "\n") for n in names])
+    ax.set_ylabel("Clause onsets, against chance")
+    ax.set_title("Do hesitations wait for a clause?", pad=4)
+    ax.set_ylim(0, max(lift) * 1.22 if lift else 1)
 
     for ax in axes:
         ax.grid(axis="y", color="#DDDDDD", linewidth=0.5)
@@ -596,6 +610,37 @@ def recovery(originals: Sequence[str], recovered: Sequence[str]) -> dict:
         "words_only_match": words_exact / len(originals) if originals else 0.0,
         "wer_words_only": float(jiwer.wer(refs, outs)),
     }
+
+
+def fidelity_table(fidelity: Dict[Tuple[str, int], dict]) -> str:
+    """How much of the script survives, which no rate metric would show.
+
+    A generator that reaches its target rate by deleting half the script is
+    worse than one that inserts nothing, and the rate table cannot tell them
+    apart. The rule-based injector is exact here by construction: it only ever
+    adds. Anything the model loses is a cost the baseline does not pay.
+    """
+    header = "| System | Level | Script words kept | Sentences losing a word |"
+    lines = [header, "|" + "|".join("---" for _ in range(4)) + "|"]
+    for key in sorted(fidelity, key=lambda k: (ORDER.index(k[0]), k[1])):
+        system, level = key
+        f = fidelity[key]
+        share = (
+            f["sentences_with_a_dropped_word"] / f["sentences"]
+            if f.get("sentences") else 0.0
+        )
+        lines.append(
+            f"| {system} | `<d{level}>` | {f['kept']:.3f} | {share:.3f} |"
+        )
+    lines.append("")
+    lines.append(
+        "Hem is a generator, not an editor, so nothing stops it rewriting a word "
+        "of the script instead of only adding to it. The injector cannot: it "
+        "copies the clean tokens through and inserts around them, so it keeps "
+        "1.000 at every setting by construction. This is the column to read "
+        "before using Hem on a script somebody has to say verbatim."
+    )
+    return "\n".join(lines)
 
 
 def round_trip_table(results: List[dict]) -> str:
@@ -703,6 +748,9 @@ def switchboard_reference(path: Path, limit: int, seed: int) -> Dict[int, dict]:
             "rates": {t: cd[t] * 100.0 / words if words else 0.0 for t in TYPES},
             "records": flat_d,
             "gold_records": flat_g,
+            # kept so the placement baseline can be computed over the corpus's
+            # own text rather than over the scripted sentences
+            "clean_texts": [r["clean"] for r in here],
         }
     return out
 
@@ -719,7 +767,12 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     ap.add_argument("--swda-limit", dest="swda_limit", type=int, default=6000)
     ap.add_argument("--qualitative", type=int, default=30)
     ap.add_argument("--seed", type=int, default=13)
-    ap.add_argument("--skip-roundtrip", dest="skip_roundtrip", action="store_true")
+    ap.add_argument("--skip-roundtrip", dest="skip_roundtrip", action="store_true",
+                    help="accepted and ignored; the round trip is hem.roundtrip")
+    ap.add_argument("--no-greedy-row", dest="greedy_row", action="store_false",
+                    help="leave the greedily decoded model off the table")
+    ap.add_argument("--temperature", type=float, default=1.0,
+                    help="sampling temperature for the model rows (default 1.0)")
     ap.add_argument("--skip-model", dest="skip_model", action="store_true",
                     help="score the rule-based injector alone")
     args = ap.parse_args(argv)
@@ -733,11 +786,20 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     systems: List[Tuple[str, object]] = [("Injector", Rules(seed=args.seed))]
     if not args.skip_model:
         systems.insert(0, ("Hem", load("model", args.model, device=args.device,
-                                       batch=args.batch)))
+                                       batch=args.batch, seed=args.seed,
+                                       temperature=args.temperature)))
+        if args.greedy_row:
+            # The same checkpoint decoded greedily, kept as a row because the
+            # gap between the two is the largest single effect in this table.
+            systems.append(
+                ("Hem greedy", load("model", args.model, device=args.device,
+                                    batch=args.batch, seed=args.seed, greedy=True))
+            )
 
     runs: Dict[Tuple[str, int], dict] = {}
     spoken: Dict[Tuple[str, int], List[str]] = {}
     fidelity: Dict[Tuple[str, int], dict] = {}
+    names = [name for name, _ in systems]
     for name, system in systems:
         for level in L.LEVELS:
             print(f"generating {name} at d{level}", file=sys.stderr)
@@ -750,11 +812,22 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             fidelity[(name, level)] = {
                 "dropped_words": dropped,
                 "clean_words": words,
+                "sentences": len(pairs),
                 "kept": 1 - dropped / words if words else 0.0,
                 "sentences_with_a_dropped_word": sum(
                     1 for p in pairs if p[1]["n_dropped"]
                 ),
             }
+
+    # Every generator's output is now in `spoken`, and the round trip has to
+    # load Mend. Holding two fine-tuned checkpoints and their MPS decode buffers
+    # alongside a third is more than a 16 GB machine will take: the first
+    # attempt at this was killed by the system partway through the round trip.
+    del systems
+    if not args.skip_model:
+        import gc
+
+        gc.collect()
 
     reference = switchboard_reference(
         args.data / "real_eval.jsonl", args.swda_limit, args.seed
@@ -786,6 +859,9 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     rate_png = rate_figure(runs, args.out)
     print(f"\nwrote {rate_png}", file=sys.stderr)
 
+    print("\n## Script fidelity\n")
+    print(fidelity_table(fidelity))
+
     print("\n## Type mix\n")
     print(mix_table(runs, reference))
     report["type_mix_kl"] = {
@@ -799,77 +875,72 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     # ---- 3
     natural = 2
     placement = {
-        "Hem": placement_stats(runs[("Hem", natural)]["records"], freqs)
-        if ("Hem", natural) in runs else {"n": 0},
-        "Injector": placement_stats(runs[("Injector", natural)]["records"], freqs),
-        "Switchboard": placement_stats(reference[natural]["records"], freqs),
+        name: placement_stats(runs[(name, natural)]["records"], freqs)
+        for name in systems_in(runs)
     }
-    base = baseline_placement(texts, freqs)
+    placement["Switchboard"] = placement_stats(reference[natural]["records"], freqs)
+    script_baseline = baseline_placement(texts, freqs)
+    baselines = {name: script_baseline for name in systems_in(runs)}
+    baselines["Switchboard"] = baseline_placement(
+        reference[natural]["clean_texts"], freqs
+    )
     print("\n## Placement\n")
-    print(placement_table(placement, base))
-    place_png = placement_figure(placement, base, args.out)
+    print(placement_table(placement, baselines))
+    place_png = placement_figure(placement, baselines, args.out)
     print(f"\nwrote {place_png}", file=sys.stderr)
     report["placement"] = {
-        name: {k: v for k, v in s.items() if k != "relative_positions"}
+        name: {
+            "measured": {k: v for k, v in s.items() if k != "relative_positions"},
+            "random_word_baseline": baselines[name],
+        }
         for name, s in placement.items()
     }
-    report["placement"]["random word"] = base
 
-    # ---- 4
-    if not args.skip_roundtrip:
-        print("\n## Round trip\n", file=sys.stderr)
-        mend = Mend(device=args.device, batch=args.batch)
-        results = []
-        for name, _ in systems:
-            for level in L.LEVELS:
-                back = mend.clean(spoken[(name, level)], progress=True)
-                entry = {"system": f"Mend after {name}", "level": level,
-                         **recovery(texts, back)}
-                results.append(entry)
-        # the ceiling: Mend on real speech, which is what it was trained for
-        real = read_jsonl(args.data / "real_eval.jsonl")
-        random.Random(args.seed).shuffle(real)
-        real = real[: args.limit]
-        back = mend.clean([r["disfluent"] for r in real], progress=True)
-        results.append({"system": "Mend on real Switchboard", "level": None,
-                        **recovery([r["clean"] for r in real], back)})
-        print("\n## Round trip\n")
-        print(round_trip_table(results))
-        report["round_trip"] = results
-        del mend
+    # Everything except the round trip is written now, so that a failure while
+    # loading or running Mend cannot take the rest of the evaluation with it.
+    def write_tables() -> None:
+        parts = [
+            "# Evaluation\n",
+            "## Rate control\n", rate_table(runs), "",
+            "## Script fidelity\n", fidelity_table(fidelity), "",
+            "## Type mix\n", mix_table(runs, reference), "",
+            "## Placement\n", placement_table(placement, baselines), "",
+        ]
+        if report.get("round_trip"):
+            parts += ["## Round trip\n", round_trip_table(report["round_trip"]), ""]
+        (args.out / "eval_tables.md").write_text("\n".join(parts) + "\n")
+        (args.out / "eval.json").write_text(
+            json.dumps(report, indent=2, default=float) + "\n"
+        )
 
-    # ---- 6
-    sample = texts[: args.qualitative]
-    by_level = {k: spoken[(systems[0][0], k)][: args.qualitative] for k in L.LEVELS}
-    (args.out / "qualitative.md").write_text(
-        f"# The dial on {len(sample)} sentences\n\n"
-        f"Generated by {systems[0][0]}, held-out sentences, greedy decoding.\n\n"
-        + qualitative_table(sample, by_level) + "\n"
-    )
-    print(f"\nwrote {args.out / 'qualitative.md'}", file=sys.stderr)
+    write_tables()
 
     # The annotated generations, for hem.surprisal to read.
     dump = args.out / "generated"
     dump.mkdir(parents=True, exist_ok=True)
     for (name, level), said in spoken.items():
-        path = dump / f"{name.lower()}_d{level}.jsonl"
+        path = dump / f"{name.lower().replace(' ', '_')}_d{level}.jsonl"
         with path.open("w", encoding="utf-8") as fh:
             for row in annotated_rows(texts, said):
                 fh.write(json.dumps(row, ensure_ascii=False) + "\n")
     print(f"wrote {len(spoken)} generation dumps to {dump}", file=sys.stderr)
 
-    (args.out / "eval.json").write_text(json.dumps(report, indent=2, default=float) + "\n")
-    tables = args.out / "eval_tables.md"
-    parts = [
-        "# Evaluation\n",
-        "## Rate control\n", rate_table(runs), "",
-        "## Type mix\n", mix_table(runs, reference), "",
-        "## Placement\n", placement_table(placement, base), "",
-    ]
-    if not args.skip_roundtrip:
-        parts += ["## Round trip\n", round_trip_table(report["round_trip"]), ""]
-    tables.write_text("\n".join(parts) + "\n")
-    print(f"wrote {tables} and {args.out / 'eval.json'}", file=sys.stderr)
+    sample = texts[: args.qualitative]
+    by_level = {k: spoken[(names[0], k)][: args.qualitative] for k in L.LEVELS}
+    (args.out / "qualitative.md").write_text(
+        f"# The dial on {len(sample)} sentences\n\n"
+        f"Generated by {names[0]}, held-out sentences, ancestral sampling at "
+        "temperature 1.\n\n"
+        + qualitative_table(sample, by_level) + "\n"
+    )
+    print(f"wrote {args.out / 'qualitative.md'}", file=sys.stderr)
+
+    # ---- 4. The round trip is `python -m hem.roundtrip`, a separate process.
+    # Loading Mend here, with two Hem checkpoints and their MPS decode buffers
+    # still resident, got this process killed by the system twice.
+    print(f"wrote {args.out / 'eval_tables.md'} and {args.out / 'eval.json'}",
+          file=sys.stderr)
+    print("\nfor the round trip:  python -m hem.roundtrip", file=sys.stderr)
     return 0
 
 

@@ -1,6 +1,98 @@
 {
-  "sentences": 400,
+  "sentences": 1200,
   "rate_control": {
+    "Hem/d0": {
+      "rates": {
+        "filler": 0.05404918475812989,
+        "repetition": 0.004504098729844158,
+        "repair": 1.5899468516349877,
+        "false_start": 0.0
+      },
+      "total_rate": 1.6485001351229618,
+      "target": {
+        "filler": 0.0,
+        "repetition": 0.0,
+        "repair": 0.0,
+        "false_start": 0.0,
+        "total": 0.0
+      },
+      "mix": {
+        "filler": 0.03278688524590164,
+        "repetition": 0.00273224043715847,
+        "repair": 0.9644808743169399,
+        "false_start": 0.0
+      },
+      "events": 366
+    },
+    "Hem/d1": {
+      "rates": {
+        "filler": 1.2881722367354291,
+        "repetition": 0.6035492297991172,
+        "repair": 2.986217457886677,
+        "false_start": 0.04954508602828574
+      },
+      "total_rate": 4.927484010449509,
+      "target": {
+        "filler": 3.8847555799670443,
+        "repetition": 1.4485999456289564,
+        "repair": 1.1306957829152866,
+        "false_start": 0.20916207564232728,
+        "total": 6.673213384153614
+      },
+      "mix": {
+        "filler": 0.26142595978062155,
+        "repetition": 0.12248628884826325,
+        "repair": 0.6060329067641682,
+        "false_start": 0.010054844606946984
+      },
+      "events": 1094
+    },
+    "Hem/d2": {
+      "rates": {
+        "filler": 3.5447257003873522,
+        "repetition": 1.9097378614539229,
+        "repair": 5.51301684532925,
+        "false_start": 0.12161066570579226
+      },
+      "total_rate": 11.089091072876316,
+      "target": {
+        "filler": 7.4667102360918225,
+        "repetition": 3.4570853539892017,
+        "repair": 2.7047701093939147,
+        "false_start": 0.5755620084514782,
+        "total": 14.204127707926416
+      },
+      "mix": {
+        "filler": 0.31965881397238016,
+        "repetition": 0.17221770917952883,
+        "repair": 0.49715678310316813,
+        "false_start": 0.010966693744922826
+      },
+      "events": 2462
+    },
+    "Hem/d3": {
+      "rates": {
+        "filler": 7.7380416178722635,
+        "repetition": 4.477074137465093,
+        "repair": 9.83695162597964,
+        "false_start": 0.39185658949644175
+      },
+      "total_rate": 22.44392397081344,
+      "target": {
+        "filler": 12.106135986733001,
+        "repetition": 7.4052812858783,
+        "repair": 7.118254879448909,
+        "false_start": 1.4255644852659777,
+        "total": 28.05523663732619
+      },
+      "mix": {
+        "filler": 0.34477222556692755,
+        "repetition": 0.1994782259682922,
+        "repair": 0.4382901866345575,
+        "false_start": 0.017459361830222758
+      },
+      "events": 4983
+    },
     "Injector/d0": {
       "rates": {
         "filler": 0.0,
@@ -26,12 +118,12 @@
     },
     "Injector/d1": {
       "rates": {
-        "filler": 3.980032379924447,
-        "repetition": 2.239611440906638,
-        "repair": 0.49919050188882896,
-        "false_start": 0.13491635186184567
+        "filler": 3.9455904873434826,
+        "repetition": 2.089901810647689,
+        "repair": 0.5449959463111431,
+        "false_start": 0.14863525808485722
       },
-      "total_rate": 6.85375067458176,
+      "total_rate": 6.729123502387172,
       "target": {
         "filler": 3.8847555799670443,
         "repetition": 1.4485999456289564,
@@ -40,21 +132,21 @@
         "total": 6.673213384153614
       },
       "mix": {
-        "filler": 0.5807086614173228,
-        "repetition": 0.32677165354330706,
-        "repair": 0.07283464566929133,
-        "false_start": 0.01968503937007874
+        "filler": 0.5863453815261044,
+        "repetition": 0.31057563587684067,
+        "repair": 0.08099062918340026,
+        "false_start": 0.02208835341365462
       },
-      "events": 508
+      "events": 1494
     },
     "Injector/d2": {
       "rates": {
-        "filler": 7.676740420939018,
-        "repetition": 4.776038855909336,
-        "repair": 1.2277388019427955,
-        "false_start": 0.593631948192121
+        "filler": 7.652463742005224,
+        "repetition": 4.792361048554184,
+        "repair": 1.252139446896676,
+        "false_start": 0.513467255202234
       },
-      "total_rate": 14.274150026983271,
+      "total_rate": 14.21043149265832,
       "target": {
         "filler": 7.4667102360918225,
         "repetition": 3.4570853539892017,
@@ -63,21 +155,21 @@
         "total": 14.204127707926416
       },
       "mix": {
-        "filler": 0.5378071833648393,
-        "repetition": 0.33459357277882795,
-        "repair": 0.08601134215500945,
-        "false_start": 0.04158790170132325
+        "filler": 0.5385103011093503,
+        "repetition": 0.33724247226624404,
+        "repair": 0.08811410459587955,
+        "false_start": 0.03613312202852615
       },
-      "events": 1058
+      "events": 3155
     },
     "Injector/d3": {
       "rates": {
-        "filler": 12.7630868861306,
-        "repetition": 10.631408526713438,
-        "repair": 3.3054506206152188,
-        "false_start": 1.3761467889908257
+        "filler": 12.65201333213224,
+        "repetition": 10.553103324024862,
+        "repair": 3.4141068372218717,
+        "false_start": 1.1485451761102603
       },
-      "total_rate": 28.076092822450082,
+      "total_rate": 27.767768669489232,
       "target": {
         "filler": 12.106135986733001,
         "repetition": 7.4052812858783,
@@ -86,49 +178,209 @@
         "total": 28.05523663732619
       },
       "mix": {
-        "filler": 0.45458913983661703,
-        "repetition": 0.3786641037962518,
-        "repair": 0.11773185968284479,
-        "false_start": 0.0490148966842864
+        "filler": 0.4556366585563666,
+        "repetition": 0.38004866180048663,
+        "repair": 0.1229521492295215,
+        "false_start": 0.0413625304136253
       },
-      "events": 2081
+      "events": 6165
+    },
+    "Hem greedy/d0": {
+      "rates": {
+        "filler": 0.3333033060084677,
+        "repetition": 0.0,
+        "repair": 1.0899918926222862,
+        "false_start": 0.0
+      },
+      "total_rate": 1.4232951986307538,
+      "target": {
+        "filler": 0.0,
+        "repetition": 0.0,
+        "repair": 0.0,
+        "false_start": 0.0,
+        "total": 0.0
+      },
+      "mix": {
+        "filler": 0.23417721518987342,
+        "repetition": 0.0,
+        "repair": 0.7658227848101266,
+        "false_start": 0.0
+      },
+      "events": 316
+    },
+    "Hem greedy/d1": {
+      "rates": {
+        "filler": 0.770200882803351,
+        "repetition": 0.018016394919376632,
+        "repair": 0.9773894243761823,
+        "false_start": 0.0
+      },
+      "total_rate": 1.76560670209891,
+      "target": {
+        "filler": 3.8847555799670443,
+        "repetition": 1.4485999456289564,
+        "repair": 1.1306957829152866,
+        "false_start": 0.20916207564232728,
+        "total": 6.673213384153614
+      },
+      "mix": {
+        "filler": 0.4362244897959184,
+        "repetition": 0.01020408163265306,
+        "repair": 0.5535714285714286,
+        "false_start": 0.0
+      },
+      "events": 392
+    },
+    "Hem greedy/d2": {
+      "rates": {
+        "filler": 1.198090262138546,
+        "repetition": 0.12611476443563643,
+        "repair": 1.0179263129447798,
+        "false_start": 0.0
+      },
+      "total_rate": 2.342131339518962,
+      "target": {
+        "filler": 7.4667102360918225,
+        "repetition": 3.4570853539892017,
+        "repair": 2.7047701093939147,
+        "false_start": 0.5755620084514782,
+        "total": 14.204127707926416
+      },
+      "mix": {
+        "filler": 0.5115384615384615,
+        "repetition": 0.05384615384615385,
+        "repair": 0.4346153846153846,
+        "false_start": 0.0
+      },
+      "events": 520
+    },
+    "Hem greedy/d3": {
+      "rates": {
+        "filler": 3.364561751193586,
+        "repetition": 1.6349878389334294,
+        "repair": 1.1620574722997927,
+        "false_start": 0.004504098729844158
+      },
+      "total_rate": 6.166111161156652,
+      "target": {
+        "filler": 12.106135986733001,
+        "repetition": 7.4052812858783,
+        "repair": 7.118254879448909,
+        "false_start": 1.4255644852659777,
+        "total": 28.05523663732619
+      },
+      "mix": {
+        "filler": 0.545653761869978,
+        "repetition": 0.26515704894083275,
+        "repair": 0.18845872899926955,
+        "false_start": 0.0007304601899196494
+      },
+      "events": 1369
     }
   },
   "rate_error": {
     "Injector": {
-      "mean_abs_error": 0.09047193153629814,
-      "mean_rel_error": 0.010909046590914342
+      "mean_abs_error": 0.11656062360080603,
+      "mean_rel_error": 0.006356196391691177
+    },
+    "Hem greedy": {
+      "mean_abs_error": 12.886242842210564,
+      "mean_rel_error": 0.7835810804696807
+    },
+    "Hem": {
+      "mean_abs_error": 3.4906928917556512,
+      "mean_rel_error": 0.22697233228720892
     }
   },
   "fidelity": {
+    "Hem/d0": {
+      "dropped_words": 414,
+      "clean_words": 22202,
+      "sentences": 1200,
+      "kept": 0.9813530312584452,
+      "sentences_with_a_dropped_word": 270
+    },
+    "Hem/d1": {
+      "dropped_words": 713,
+      "clean_words": 22202,
+      "sentences": 1200,
+      "kept": 0.9678857760562112,
+      "sentences_with_a_dropped_word": 429
+    },
+    "Hem/d2": {
+      "dropped_words": 970,
+      "clean_words": 22202,
+      "sentences": 1200,
+      "kept": 0.9563102423205116,
+      "sentences_with_a_dropped_word": 564
+    },
+    "Hem/d3": {
+      "dropped_words": 1351,
+      "clean_words": 22202,
+      "sentences": 1200,
+      "kept": 0.9391496261598055,
+      "sentences_with_a_dropped_word": 649
+    },
     "Injector/d0": {
       "dropped_words": 0,
-      "clean_words": 7412,
+      "clean_words": 22202,
+      "sentences": 1200,
       "kept": 1.0,
       "sentences_with_a_dropped_word": 0
     },
     "Injector/d1": {
       "dropped_words": 0,
-      "clean_words": 7412,
+      "clean_words": 22202,
+      "sentences": 1200,
       "kept": 1.0,
       "sentences_with_a_dropped_word": 0
     },
     "Injector/d2": {
-      "dropped_words": 0,
-      "clean_words": 7412,
-      "kept": 1.0,
-      "sentences_with_a_dropped_word": 0
+      "dropped_words": 1,
+      "clean_words": 22202,
+      "sentences": 1200,
+      "kept": 0.9999549590127016,
+      "sentences_with_a_dropped_word": 1
     },
     "Injector/d3": {
-      "dropped_words": 1,
-      "clean_words": 7412,
-      "kept": 0.9998650836481382,
-      "sentences_with_a_dropped_word": 1
+      "dropped_words": 4,
+      "clean_words": 22202,
+      "sentences": 1200,
+      "kept": 0.9998198360508063,
+      "sentences_with_a_dropped_word": 4
+    },
+    "Hem greedy/d0": {
+      "dropped_words": 283,
+      "clean_words": 22202,
+      "sentences": 1200,
+      "kept": 0.987253400594541,
+      "sentences_with_a_dropped_word": 195
+    },
+    "Hem greedy/d1": {
+      "dropped_words": 262,
+      "clean_words": 22202,
+      "sentences": 1200,
+      "kept": 0.9881992613278083,
+      "sentences_with_a_dropped_word": 177
+    },
+    "Hem greedy/d2": {
+      "dropped_words": 315,
+      "clean_words": 22202,
+      "sentences": 1200,
+      "kept": 0.9858120890009909,
+      "sentences_with_a_dropped_word": 183
+    },
+    "Hem greedy/d3": {
+      "dropped_words": 496,
+      "clean_words": 22202,
+      "sentences": 1200,
+      "kept": 0.977659670299973,
+      "sentences_with_a_dropped_word": 205
     }
   },
   "switchboard": {
     "d0": {
-      "utterances": 768,
+      "utterances": 2270,
       "events": 0,
       "mix": {
         "filler": 0.0,
@@ -150,99 +402,262 @@
       }
     },
     "d1": {
-      "utterances": 622,
-      "events": 785,
+      "utterances": 1865,
+      "events": 2334,
       "mix": {
-        "filler": 0.6140127388535032,
-        "repetition": 0.1770700636942675,
-        "repair": 0.18980891719745224,
-        "false_start": 0.01910828025477707
+        "filler": 0.6105398457583547,
+        "repetition": 0.16580976863753213,
+        "repair": 0.19965724078834618,
+        "false_start": 0.023993144815766924
       },
       "gold_mix": {
-        "filler": 0.5832167832167832,
-        "repetition": 0.22237762237762237,
-        "repair": 0.17202797202797201,
-        "false_start": 0.022377622377622378
+        "filler": 0.5762310606060606,
+        "repetition": 0.21543560606060605,
+        "repair": 0.17897727272727273,
+        "false_start": 0.029356060606060608
       },
       "rates": {
-        "filler": 4.482886904761905,
-        "repetition": 1.2927827380952381,
-        "repair": 1.3857886904761905,
-        "false_start": 0.13950892857142858
+        "filler": 4.516497099933441,
+        "repetition": 1.2265855281924503,
+        "repair": 1.476973788469462,
+        "false_start": 0.17749041234826154
       }
     },
     "d2": {
-      "utterances": 495,
-      "events": 1083,
+      "utterances": 1482,
+      "events": 3342,
       "mix": {
-        "filler": 0.6131117266851339,
-        "repetition": 0.17082179132040629,
-        "repair": 0.1837488457987073,
-        "false_start": 0.032317636195752536
+        "filler": 0.5966487133453022,
+        "repetition": 0.17025733093955714,
+        "repair": 0.20496708557749851,
+        "false_start": 0.028126870137642132
       },
       "gold_mix": {
-        "filler": 0.5431976166832175,
-        "repetition": 0.24329692154915591,
-        "repair": 0.17974180734856007,
-        "false_start": 0.033763654419066536
+        "filler": 0.5266025641025641,
+        "repetition": 0.24006410256410257,
+        "repair": 0.19455128205128205,
+        "false_start": 0.03878205128205128
       },
       "rates": {
-        "filler": 9.293212036389082,
-        "repetition": 2.589223233030091,
-        "repair": 2.7851644506648006,
-        "false_start": 0.489853044086774
+        "filler": 9.105854415928395,
+        "repetition": 2.598410813772947,
+        "repair": 3.128139556123847,
+        "false_start": 0.429262946387798
       }
     },
     "d3": {
-      "utterances": 115,
-      "events": 425,
+      "utterances": 383,
+      "events": 1478,
       "mix": {
-        "filler": 0.5670588235294117,
-        "repetition": 0.16705882352941176,
-        "repair": 0.2376470588235294,
-        "false_start": 0.02823529411764706
+        "filler": 0.5561569688768606,
+        "repetition": 0.16982408660351828,
+        "repair": 0.2442489851150203,
+        "false_start": 0.029769959404600813
       },
       "gold_mix": {
-        "filler": 0.4288840262582057,
-        "repetition": 0.24288840262582057,
-        "repair": 0.2910284463894967,
-        "false_start": 0.037199124726477024
+        "filler": 0.43285528031290743,
+        "repetition": 0.26792698826597133,
+        "repair": 0.25749674054758803,
+        "false_start": 0.041720990873533245
       },
       "rates": {
-        "filler": 14.987562189054726,
-        "repetition": 4.41542288557214,
-        "repair": 6.281094527363184,
-        "false_start": 0.746268656716418
+        "filler": 15.049432442328817,
+        "repetition": 4.595386305382644,
+        "repair": 6.609300622482607,
+        "false_start": 0.8055657268399854
       }
     }
   },
   "type_mix_kl": {
-    "Injector/d1": 0.14207165050371415,
-    "Injector/d2": 0.1429624904277401,
-    "Injector/d3": 0.2199238461887783,
-    "Switchboard gold/d2": 0.02521078647253014
+    "Hem/d1": 0.5838713831292484,
+    "Hem/d2": 0.33514642265130973,
+    "Hem/d3": 0.16450797307714743,
+    "Injector/d1": 0.1387301279183882,
+    "Injector/d2": 0.1578028267126817,
+    "Injector/d3": 0.20716008384001317,
+    "Hem greedy/d1": 0.5624701789338038,
+    "Hem greedy/d2": 0.2692813777585568,
+    "Hem greedy/d3": 0.08197871393413077,
+    "Switchboard gold/d2": 0.026596712721148025
   },
   "placement": {
     "Hem": {
-      "n": 0
+      "measured": {
+        "n": 787,
+        "at_clause_onset": 0.21473951715374842,
+        "before_content_word": 0.6886912325285895,
+        "mean_next_log_freq": -4.084182955600932,
+        "n_mid_clause": 618,
+        "mid_clause_next_log_freq": -4.335740085529858
+      },
+      "random_word_baseline": {
+        "n": 22202,
+        "at_clause_onset": 0.10850373840194577,
+        "before_content_word": 0.5447257003873525,
+        "mean_next_log_freq": -3.5998558836984946,
+        "n_mid_clause": 19793,
+        "mid_clause_next_log_freq": -3.623520798851706
+      }
+    },
+    "Hem greedy": {
+      "measured": {
+        "n": 266,
+        "at_clause_onset": 0.12030075187969924,
+        "before_content_word": 0.39473684210526316,
+        "mean_next_log_freq": -4.767691415498495,
+        "n_mid_clause": 234,
+        "mid_clause_next_log_freq": -4.939790527935204
+      },
+      "random_word_baseline": {
+        "n": 22202,
+        "at_clause_onset": 0.10850373840194577,
+        "before_content_word": 0.5447257003873525,
+        "mean_next_log_freq": -3.5998558836984946,
+        "n_mid_clause": 19793,
+        "mid_clause_next_log_freq": -3.623520798851706
+      }
     },
     "Injector": {
-      "n": 569,
-      "at_clause_onset": 0.1687170474516696,
-      "before_content_word": 0.9086115992970123,
-      "mean_next_log_freq": -4.493619291079266
+      "measured": {
+        "n": 1699,
+        "at_clause_onset": 0.16892289582107123,
+        "before_content_word": 0.8987639788110653,
+        "mean_next_log_freq": -4.495123313795471,
+        "n_mid_clause": 1412,
+        "mid_clause_next_log_freq": -4.7391960745762995
+      },
+      "random_word_baseline": {
+        "n": 22202,
+        "at_clause_onset": 0.10850373840194577,
+        "before_content_word": 0.5447257003873525,
+        "mean_next_log_freq": -3.5998558836984946,
+        "n_mid_clause": 19793,
+        "mid_clause_next_log_freq": -3.623520798851706
+      }
     },
     "Switchboard": {
-      "n": 664,
-      "at_clause_onset": 0.7620481927710844,
-      "before_content_word": 0.3990963855421687,
-      "mean_next_log_freq": -2.6133922604390283
-    },
-    "random word": {
-      "n": 7412,
-      "at_clause_onset": 0.11063140852671344,
-      "before_content_word": 0.5423637344846195,
-      "mean_next_log_freq": -3.587493724951996
+      "measured": {
+        "n": 1994,
+        "at_clause_onset": 0.7858575727181545,
+        "before_content_word": 0.3966900702106319,
+        "mean_next_log_freq": -2.6677460252449197,
+        "n_mid_clause": 427,
+        "mid_clause_next_log_freq": -2.7677218495601608
+      },
+      "random_word_baseline": {
+        "n": 21898,
+        "at_clause_onset": 0.14394008585258927,
+        "before_content_word": 0.43953785733856976,
+        "mean_next_log_freq": -2.7107104798854462,
+        "n_mid_clause": 18746,
+        "mid_clause_next_log_freq": -2.769166440985158
+      }
     }
-  }
+  },
+  "round_trip": [
+    {
+      "system": "Mend after Hem",
+      "level": 0,
+      "n": 1200,
+      "exact_match": 0.4708333333333333,
+      "words_only_match": 0.7466666666666667,
+      "wer_words_only": 0.021394468966759752
+    },
+    {
+      "system": "Mend after Hem",
+      "level": 1,
+      "n": 1200,
+      "exact_match": 0.38666666666666666,
+      "words_only_match": 0.5825,
+      "wer_words_only": 0.04409512656517431
+    },
+    {
+      "system": "Mend after Hem",
+      "level": 2,
+      "n": 1200,
+      "exact_match": 0.2991666666666667,
+      "words_only_match": 0.4033333333333333,
+      "wer_words_only": 0.07724529321682731
+    },
+    {
+      "system": "Mend after Hem",
+      "level": 3,
+      "n": 1200,
+      "exact_match": 0.2025,
+      "words_only_match": 0.25083333333333335,
+      "wer_words_only": 0.14381587244392396
+    },
+    {
+      "system": "Mend after Hem greedy",
+      "level": 0,
+      "n": 1200,
+      "exact_match": 0.48,
+      "words_only_match": 0.7916666666666666,
+      "wer_words_only": 0.01932258355103144
+    },
+    {
+      "system": "Mend after Hem greedy",
+      "level": 1,
+      "n": 1200,
+      "exact_match": 0.4816666666666667,
+      "words_only_match": 0.7991666666666667,
+      "wer_words_only": 0.02697955139176651
+    },
+    {
+      "system": "Mend after Hem greedy",
+      "level": 2,
+      "n": 1200,
+      "exact_match": 0.48083333333333333,
+      "words_only_match": 0.7941666666666667,
+      "wer_words_only": 0.036483199711737684
+    },
+    {
+      "system": "Mend after Hem greedy",
+      "level": 3,
+      "n": 1200,
+      "exact_match": 0.4708333333333333,
+      "words_only_match": 0.78,
+      "wer_words_only": 0.10805332852896135
+    },
+    {
+      "system": "Mend after Injector",
+      "level": 0,
+      "n": 1200,
+      "exact_match": 0.5,
+      "words_only_match": 0.8683333333333333,
+      "wer_words_only": 0.009233402396180524
+    },
+    {
+      "system": "Mend after Injector",
+      "level": 1,
+      "n": 1200,
+      "exact_match": 0.4741666666666667,
+      "words_only_match": 0.7958333333333333,
+      "wer_words_only": 0.015223853706873255
+    },
+    {
+      "system": "Mend after Injector",
+      "level": 2,
+      "n": 1200,
+      "exact_match": 0.4375,
+      "words_only_match": 0.7091666666666666,
+      "wer_words_only": 0.025538239798216376
+    },
+    {
+      "system": "Mend after Injector",
+      "level": 3,
+      "n": 1200,
+      "exact_match": 0.3775,
+      "words_only_match": 0.6033333333333334,
+      "wer_words_only": 0.04125754436537249
+    },
+    {
+      "system": "Mend on real Switchboard",
+      "level": null,
+      "n": 1200,
+      "exact_match": 0.4633333333333333,
+      "words_only_match": 0.7783333333333333,
+      "wer_words_only": 0.027379691072324765
+    }
+  ]
 }

@@ -76,6 +76,18 @@ including the ones that turned out to be wrong.
 - 2026-09-08: Greedy decoding, no sampling. Sampling would let the rate be tuned
   after the fact with the temperature, and the point of the control token is that
   the rate is something the model learned.
+- 2026-09-09: **That was wrong and is reversed.** Greedy collapses the dial:
+  measured over 1,200 held-out scripts it reaches 1.77, 2.34 and 6.17 events per
+  100 words against targets of 6.67, 14.20 and 28.06. The reason is not a bug.
+  The model is a distribution over ways of saying a sentence and the most likely
+  way to say any sentence is fluently, because a filled pause has to go somewhere
+  and no one position carries as much probability as inserting nothing. Ancestral
+  sampling at temperature 1, with `top_k` and `top_p` off, reaches 4.93, 11.09
+  and 22.44. Temperature 1 is not a tuned value, it is the absence of one, and
+  temperature 1.3 is why it stays there: it overshoots the targets and takes the
+  script loss from 4.4% to 16.9% at the natural setting. Sampling is seeded, so
+  the numbers still reproduce. The greedily decoded model is kept as its own row
+  in every table.
 - 2026-09-08: Mixed 50k synthetic with 24,619 real pairs (33% real), matching
   Mend's best configuration, so the two are comparable.
 - 2026-09-08: The first full run degraded from 1.5 s/step to 25 s/step and drove
@@ -145,3 +157,33 @@ including the ones that turned out to be wrong.
   trip.
 - 2026-09-08: KL is smoothed on the reference side. A system that never produces
   restarts would otherwise score an infinite divergence off one empty cell.
+- 2026-09-09: The placement baseline was computed once, over the scripted
+  sentences, and applied to the Switchboard row too. That made Switchboard's
+  clause-onset share look like a 7x lift when its own text puts the figure at
+  5.5x. Fixed, and the earlier version is noted in the README rather than quietly
+  replaced.
+- 2026-09-09: Added a script-fidelity table. No rate metric can tell a generator
+  that hits its target by inserting from one that hits it by deleting, and the
+  model does the second more than expected: at the natural setting 47% of
+  sentences lose at least one word of the script. The injector keeps 1.000 by
+  construction, which is the comparison that makes the number readable.
+- 2026-09-09: Added `hem/copyfail.py` after the qualitative table showed the
+  model mangling rare proper nouns, which the detector counts as substitutions.
+  Splitting the scripts on whether they contain a word absent from Switchboard
+  shows the effect is real (5.77 against 3.91) and partial: the excess over
+  target survives on scripts made only of words Switchboard says. The injector's
+  rate does not move across the split, which is the control that makes the test
+  mean anything.
+- 2026-09-09: The round trip is `python -m hem.roundtrip`, a separate process.
+  Loading Mend inside `hem.evaluate`, with two Hem checkpoints and their MPS
+  decode buffers still resident, got the process killed by the system twice with
+  no traceback. The tables are also written before the round trip runs, so a
+  failure there cannot take the rest of the evaluation with it.
+- 2026-09-09: The temperature comparison was first run on a 150-sentence probe
+  and put in a table next to numbers from the 1,200-sentence evaluation, where
+  the greedy rows disagreed by a factor of two on sample variation alone. Re-run
+  on the same 1,200 scripts before publishing.
+- 2026-09-09: The evaluation reports the injector as the better system on rate
+  control, script fidelity, the round trip and type mix at two settings of three.
+  The model wins on placement, which is the axis it was predicted to win on, and
+  nowhere else. Reported that way round.
