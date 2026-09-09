@@ -228,10 +228,19 @@ million words of Switchboard, which in practice means a rare proper noun:
 The injector's rate does not move across the split, which is the control the
 test needed: the split is not just picking out longer or harder sentences.
 
-So copy failure is real and it is **partial**. It accounts for about a third of
-Hem's substitution excess. On scripts made entirely of words Switchboard says,
-Hem still substitutes at 3.91 against a target of 2.70. Reproduce with
+So copy failure is real and it is **partial**. On the scripts that name
+something Switchboard has never heard of, it accounts for about 60% of the
+excess over target: taking the unseen words away drops the substitution rate
+from 5.77 to 3.91, against a target of 2.70. The other 40% is something else,
+and it does not go away: even on scripts made entirely of words Switchboard
+says, Hem substitutes at 1.4 times the rate it should. Reproduce with
 `python -m hem.copyfail`.
+
+Four fifths of the evaluation scripts contain such a word, which is a property
+of the source rather than a choice: WikiText is an encyclopaedia and
+encyclopaedias are mostly proper nouns. A cleaner reading of Hem's substitution
+behaviour would need a corpus of scripted speech, which is exactly the thing
+that does not exist and is why Mend built a generator in the first place.
 
 ## Placement
 
@@ -300,8 +309,14 @@ one being asked about.
 differences.
 
 Real repairs put the surprise exactly on the interruption, which reproduces
-Mend's result (+4.82 there, +4.73 here, on an overlapping sample). The injector
-does the same thing more weakly. **Hem does something different in kind**: it
+Mend's result: +4.82 bits there against +4.73 here, on a different sample of the
+same corpus (Mend drew from the whole parse, Hem from the held-out conversations
+of at least 10 clean words). The injector does the same thing more weakly, and
+one position later than Mend's injector managed, which is what the span-drop
+repair buys: an abandoned phrase that is a shortened version of the real one
+rather than a word pulled at random out of a category.
+
+**Hem does something different in kind**: it
 spikes 7.7 bits one word *early*, on the abandoned material, and then at the
 interruption itself sits 2.2 bits *below* its own fluent control.
 
@@ -376,11 +391,15 @@ Confirm with Kevin that the small studio is free on Thursday.
  d3  confirm by kevin that the like small studio studio is free on on thursday
 ```
 
-The first is the system working: *los uh lost* at `<d2>` is a real self-repair
-shape, and `<d3>` adds a repetition and two filled pauses without touching a
-word. The second shows the cost creeping in: `<d2>` inserts a stray *in*, and
-`<d3>` turns *confirm with Kevin* into *confirm by Kevin*, which is a rewrite of
-the script and not a disfluency at all.
+The first is the system working. *los uh lost* at `<d2>` is a real self-repair
+shape, a speaker starting a word, breaking off and getting it right, and it is
+not a shape the injector can produce at all. `<d3>` adds two repetitions and two
+filled pauses without touching a word of the script. `<d1>` is identical to
+`<d0>`, which is the rate shortfall showing up on a twelve-word sentence.
+
+The second shows the cost creeping in. `<d2>` inserts a stray *in*, and `<d3>`
+turns *confirm with Kevin* into *confirm by Kevin*, which is a rewrite of the
+script and not a disfluency at all.
 
 ```
 Producer Richard Stokes notes that it felt like we were organising a real
@@ -433,8 +452,10 @@ this is disfluency.
   0.12 per 100 words at `<d2>` against a target of 0.58, and the detector finds
   1 in 83 of the real ones, so neither the shortfall nor any correction to it
   can be trusted.
-* **Rate control is 20% short and no amount of decoding fixes it cheaply.**
-  Raising the temperature closes the gap and quadruples the script loss.
+* **Rate control is 20% short and decoding does not fix it cheaply.** Raising
+  the temperature to 1.3 does not close the gap so much as shoot past it (24.4
+  against a target of 14.2 at the natural setting), and takes the script loss
+  from 4.4% to 16.9% on the way.
 
 None of these are fixed by more training. The first two are capacity: a larger
 base model that can copy a proper noun would remove most of the substitution
@@ -457,7 +478,6 @@ otherwise CPU.
 The trained model is on the Hub, so nothing needs training to try it:
 
 ```python
-import torch
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 model = AutoModelForSeq2SeqLM.from_pretrained("daltonoscar0/hem-flan-t5-small")
