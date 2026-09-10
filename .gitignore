@@ -27,3 +27,10 @@ outputs/*.log
 
 # local tooling
 .claude/
+CLAUDE.md
+AGENTS.md
+.agentnotes/
+.cursor/
+.mcp.json
+tasks/lessons.md
+tasks/todo.md
