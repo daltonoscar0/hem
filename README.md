@@ -609,6 +609,30 @@ outputs/           tables, figures, the thirty-sentence table, the generations
 DECISIONS.md       one line per engineering decision, including the wrong ones
 ```
 
+### The large generations are in a release, not in git
+
+Six files in `outputs/generated/` were over 1 MB, about 7.7 MB between them, so
+they live in the [`outputs-v1`](https://github.com/daltonoscar0/hem/releases/tag/outputs-v1)
+release instead of the working tree: `hem_d2`, `hem_d3`, `hem_greedy_d3`,
+`injector_d1`, `injector_d2`, `injector_d3`. The smaller files in that directory
+are still checked in.
+
+Either regenerate them:
+
+```bash
+python -m hem.evaluate        # rewrites all of outputs/generated/
+```
+
+or download them:
+
+```bash
+gh release download outputs-v1 --repo daltonoscar0/hem --dir outputs/generated
+```
+
+`python -m hem.surprisal` reads `hem_d2.jsonl` and `injector_d2.jsonl`, so it
+needs one of those two steps first. Nothing else in the repository reads them,
+and the test suite does not.
+
 ## Licence
 
 MIT.

@@ -34,3 +34,12 @@ AGENTS.md
 .mcp.json
 tasks/lessons.md
 tasks/todo.md
+
+# Large generated outputs: attached to the outputs-v1 release instead.
+# Regenerate with `python -m hem.evaluate`.
+outputs/generated/hem_d2.jsonl
+outputs/generated/hem_d3.jsonl
+outputs/generated/hem_greedy_d3.jsonl
+outputs/generated/injector_d1.jsonl
+outputs/generated/injector_d2.jsonl
+outputs/generated/injector_d3.jsonl
